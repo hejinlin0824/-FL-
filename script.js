@@ -1,32 +1,43 @@
 // 团队成员数据
-const teamMembers = [
-    { name: "张三", title: "教授", photo: "https://via.placeholder.com/300", description: "专注于联邦学习算法优化" },
-    { name: "李四", title: "副教授", photo: "https://via.placeholder.com/300", description: "研究隐私保护机制" },
-    { name: "王五", title: "博士后", photo: "https://via.placeholder.com/300", description: "跨域联邦学习专家" },
-    { name: "赵六", title: "博士生", photo: "https://via.placeholder.com/300", description: "联邦学习系统实现" }
-];
-
-// 研究成果数据
-const achievements = [
-    { title: "联邦学习框架FedAvg", description: "开发了一个高效的联邦学习框架FedAvg,支持多种聚合算法。", icon: "fas fa-project-diagram" },
-    { title: "隐私保护联邦学习", description: "提出了一种新的隐私保护机制,大幅提高了联邦学习的安全性。", icon: "fas fa-shield-alt" },
-    { title: "跨域联邦学习", description: "实现了跨域联邦学习,使不同领域的数据可以协同学习。", icon: "fas fa-globe" }
-];
+const teamMembers = {
+    supervisors: [
+        { name: "田老师", title: "教授", photo: "https://via.placeholder.com/300", description: "联邦学习研究团队负责人" },
+    ],
+    phd: [
+        { name: "张三", title: "博士研究生（研三）", photo: "https://via.placeholder.com/300", description: "专注于联邦学习算法优化" },
+        { name: "李四", title: "博士研究生（研二）", photo: "https://via.placeholder.com/300", description: "研究隐私保护机制" },
+        { name: "王五", title: "博士研究生（研一）", photo: "https://via.placeholder.com/300", description: "跨域联邦学习专家" },
+    ],
+    masters: [
+        { name: "赵六", title: "硕士研究生（研二）", photo: "https://via.placeholder.com/300", description: "联邦学习系统实现" },
+        { name: "钱七", title: "硕士研究生（研一）", photo: "https://via.placeholder.com/300", description: "联邦学习应用研究" },
+    ]
+};
 
 // 论文列表数据
 const publications = [
-    "张三, 李四. (2022). 联邦学习中的隐私保护机制研究. 人工智能学报, 10(2), 123-135.",
+    "张三, 李四. (2022). 联邦学习中的隐私保护机制研究. ��工智能学报, 10(2), 123-135.",
     "王五, 赵六. (2021). 跨域联邦学习: 理论与实践. 计算机研究与发展, 58(5), 1001-1015.",
     "李四, 张三. (2020). FedAvg: 一种高效的联邦学习聚合算法. 软件学报, 31(3), 567-580."
 ];
 
+// 新增专利列表数据
+const patents = [
+    "张三, 李四. (2022). 一种基于联邦学习的隐私保护方法. 专利号: CN123456789A",
+    "王五, 赵六. (2021). 跨域联邦学习系统及方法. 专利号: CN987654321A",
+    "李四, 张三. (2020). 联邦学习中的高效聚合算法. 专利号: CN246813579A"
+];
+
 // 添加团队成员
 function addTeamMembers() {
-    const teamContainer = document.getElementById('team-members');
-    teamMembers.forEach((member, index) => {
-        const memberCard = `
+    const supervisorsContainer = document.getElementById('team-supervisors');
+    const phdContainer = document.getElementById('team-phd');
+    const mastersContainer = document.getElementById('team-masters');
+
+    function createMemberCard(member, index) {
+        return `
             <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="${index * 100}">
-                <div class="card team-member-card h-100" style="cursor: pointer;" onclick="showMemberDetails(${index})">
+                <div class="card team-member-card h-100" style="cursor: pointer;" onclick="showMemberDetails(${JSON.stringify(member).replace(/"/g, '&quot;')})">
                     <img src="${member.photo}" class="card-img-top" alt="${member.name}">
                     <div class="card-body text-center">
                         <h5 class="card-title">${member.name}</h5>
@@ -35,13 +46,23 @@ function addTeamMembers() {
                 </div>
             </div>
         `;
-        teamContainer.innerHTML += memberCard;
+    }
+
+    teamMembers.supervisors.forEach((member, index) => {
+        supervisorsContainer.innerHTML += createMemberCard(member, index);
+    });
+
+    teamMembers.phd.forEach((member, index) => {
+        phdContainer.innerHTML += createMemberCard(member, index);
+    });
+
+    teamMembers.masters.forEach((member, index) => {
+        mastersContainer.innerHTML += createMemberCard(member, index);
     });
 }
 
 // 添加显示成员详情的函数
-function showMemberDetails(index) {
-    const member = teamMembers[index];
+function showMemberDetails(member) {
     document.getElementById('memberPhoto').src = member.photo;
     document.getElementById('memberName').textContent = member.name;
     document.getElementById('memberTitle').textContent = member.title;
@@ -49,25 +70,6 @@ function showMemberDetails(index) {
     
     const modal = new bootstrap.Modal(document.getElementById('memberModal'));
     modal.show();
-}
-
-// 添加研究成果
-function addAchievements() {
-    const achievementContainer = document.getElementById('achievement-list');
-    achievements.forEach((achievement, index) => {
-        const achievementCard = `
-            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="${index * 100}">
-                <div class="card achievement-card">
-                    <div class="card-body text-center">
-                        <i class="${achievement.icon} fa-3x mb-3 text-primary"></i>
-                        <h5 class="card-title">${achievement.title}</h5>
-                        <p class="card-text">${achievement.description}</p>
-                    </div>
-                </div>
-            </div>
-        `;
-        achievementContainer.innerHTML += achievementCard;
-    });
 }
 
 // 添加论文列表
@@ -80,6 +82,19 @@ function addPublications() {
             </li>
         `;
         publicationContainer.innerHTML += publicationItem;
+    });
+}
+
+// 新增添加专利列表的函数
+function addPatents() {
+    const patentContainer = document.getElementById('patent-list');
+    patents.forEach((patent, index) => {
+        const patentItem = `
+            <li class="list-group-item publication-item" data-aos="fade-up" data-aos-delay="${index * 50}">
+                ${patent}
+            </li>
+        `;
+        patentContainer.innerHTML += patentItem;
     });
 }
 
@@ -102,17 +117,15 @@ document.addEventListener('DOMContentLoaded', function() {
         case "index.html":
         case "":
             addTeamMembers();
-            addAchievements();
             addPublications();
+            addPatents();
             break;
         case "team.html":
             addTeamMembers();
             break;
-        case "achievements.html":
-            addAchievements();
-            break;
         case "publications.html":
             addPublications();
+            addPatents();
             break;
     }
     
