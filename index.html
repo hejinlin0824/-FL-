@@ -12,17 +12,17 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html">联邦学习实验室</a>
+            <a class="navbar-brand" href="#home">联邦学习实验室</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">首页</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">关于我们</a></li>
-                    <li class="nav-item"><a class="nav-link" href="team.html">团队成员</a></li>
-                    <li class="nav-item"><a class="nav-link" href="achievements.html">研究成果</a></li>
-                    <li class="nav-item"><a class="nav-link" href="publications.html">论文列表</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#home">首页</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#lab-intro">实验室简介</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#lab-news">新闻</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#team">团队成员</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#publications-patents">论文与专利</a></li>
                 </ul>
             </div>
         </div>
@@ -32,26 +32,53 @@
         <div class="bg-image"></div>
         <div class="container content">
             <h1 class="display-2 fw-bold">田老师团队主页</h1>
-            <p class="lead">计算机学院多模态实验室</p>
-            <a href="#about" class="btn btn-primary btn-lg mt-3">了解更多</a>
+            <p class="lead">多模态信息感知与安全实验室</p>
+            <a href="#lab-intro" class="btn btn-primary btn-lg mt-3">了解更多</a>
+        </div>
+        <!-- 在 header 部分的 </div> 标签之前添加以下代码 -->
+        <div class="scroll-down">
+            <a href="#lab-intro" class="scroll-down-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 5v14M5 12l7 7 7-7"/>
+                </svg>
+            </a>
         </div>
     </header>
 
-    <section id="about" class="py-5">
+    <section id="lab-intro" class="py-5">
         <div class="container">
-            <h2 class="text-center mb-5">关于我们</h2>
+            <h2 class="text-center mb-5">实验室简介</h2>
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <p>联邦学习研究团队是一个专注于联邦学习研究和应用的前沿团队。我们致力于开发先进的联邦学习算法和框架,以解决数据隐私和安全问题,同时实现多方数据的协作学习。</p>
+                    <p>联邦学习研究团队是一个专注于联邦学习研究和应用的前沿团队。背靠新疆大学计算机学院，我们致力于开发先进的联邦学习算法和框架，以解决数据隐私和安全问题，同时实现多方敏感数据的协作学习。</p>
+                    <p>我们的研究方向包括：</p>
+                    <ul>
+                        <li>联邦学习算法优化</li>
+                        <li>隐私保护机制设计</li>
+                        <li>跨域联邦学习</li>
+                        <li>联邦学习系统实现</li>
+                    </ul>
                 </div>
                 <div class="col-md-6">
-                    <img src="https://via.placeholder.com/500x300" alt="关于我们" class="img-fluid rounded shadow">
+                    <img src="https://via.placeholder.com/500x300" alt="实验室简介" class="img-fluid rounded shadow">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="team" class="py-5 bg-light">
+    <section id="lab-news" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">实验室新闻</h2>
+            <div class="row" id="news-list">
+                <!-- 新闻列表将通过JavaScript动态添加 -->
+            </div>
+            <div class="text-center mt-4">
+                <a href="#lab-news" class="btn btn-primary">查看更多新闻</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-5">
         <div class="container">
             <h2 class="text-center mb-5">团队成员</h2>
             <div class="row mb-4" id="team-supervisors">
@@ -71,13 +98,13 @@
             <h2 class="text-center mb-5">论文与专利</h2>
             <div class="row">
                 <div class="col-lg-6">
-                    <h3 class="mb-4">论文列表</h3>
+                    <h3 class="mb-4 text-center">论文列表</h3>
                     <ul class="list-group" id="publication-list">
                         <!-- 论文列表将通过JavaScript动态添加 -->
                     </ul>
                 </div>
                 <div class="col-lg-6">
-                    <h3 class="mb-4">专利列表</h3>
+                    <h3 class="mb-4 text-center">专利列表</h3>
                     <ul class="list-group" id="patent-list">
                         <!-- 专利列表将通过JavaScript动态添加 -->
                     </ul>
@@ -106,10 +133,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
                 </div>
                 <div class="modal-body">
-                    <img id="memberPhoto" src="" alt="" class="img-fluid rounded mb-3">
-                    <h4 id="memberName"></h4>
-                    <p id="memberTitle" class="text-muted"></p>
+                    <img id="memberPhoto" src="" alt="" class="img-fluid rounded mb-3" style="width: 200px; height: 200px; object-fit: cover; display: block; margin: 0 auto;">
+                    <h4 id="memberName" class="text-center"></h4>
+                    <p id="memberTitle" class="text-muted text-center"></p>
                     <p id="memberDescription"></p>
+                    <h5>研究方向</h5>
+                    <p id="memberResearchInterests"></p>
+                    <h5>擅长领域</h5>
+                    <p id="memberExpertise"></p>
+                    <h5>教育背景</h5>
+                    <p id="memberEducation"></p>
                 </div>
             </div>
         </div>
